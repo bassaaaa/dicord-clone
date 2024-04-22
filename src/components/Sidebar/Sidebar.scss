@@ -1,8 +1,8 @@
 .sidebar {
   display: flex;
-  flex: 0.35;
+  flex: 0.3;
   height: 100vh;
-  background-color: #36393e; // Todo: 後でHomeに移動
+  // background-color: #36393e; // Todo: 後でHomeに移動
 
   .sidebarLeft {
     display: flex;
@@ -34,6 +34,7 @@
     background-color: #282b30;
     width: 300px;
     position: relative;
+    flex-grow: 1;
 
     .sidebarTop {
       color: white;
