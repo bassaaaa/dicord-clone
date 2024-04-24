@@ -7,7 +7,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import ChatMessage from "./ChatMessage";
 import { useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
-import { CollectionReference, DocumentData, DocumentReference, Timestamp, addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import { CollectionReference, DocumentData, Timestamp, addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 
 interface Message {
@@ -53,7 +53,7 @@ const Chat = () => {
     // channels collectionの中にあるmessages コレクション中にinputTextを追加する
     const collectionRef: CollectionReference<DocumentData> = collection(db, "channels", String(channelId), "messages");
 
-    const docRef: DocumentReference<DocumentData> = await addDoc(collectionRef, {
+    await addDoc(collectionRef, {
       message: inputText,
       timestamp: serverTimestamp(),
       user: user,
