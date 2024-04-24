@@ -7,7 +7,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import ChatMessage from "./ChatMessage";
 import { useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
-import { CollectionReference, DocumentData, DocumentReference, Timestamp, addDoc, collection, onSnapshot, serverTimestamp } from "firebase/firestore";
+import { CollectionReference, DocumentData, DocumentReference, Timestamp, addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 
 interface Message {
@@ -31,7 +31,10 @@ const Chat = () => {
 
   useEffect(() => {
     const collectionRef: CollectionReference<DocumentData> = collection(db, "channels", String(channelId), "messages");
-    onSnapshot(collectionRef, (snapshot) => {
+
+    const collectionRefOrderBy = query(collectionRef, orderBy("timestamp", "asc"));
+
+    onSnapshot(collectionRefOrderBy, (snapshot) => {
       const results: Message[] = [];
       snapshot.docs.forEach((doc) => {
         results.push({
