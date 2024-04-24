@@ -58,7 +58,7 @@ const Chat = () => {
       timestamp: serverTimestamp(),
       user: user,
     });
-    console.log(docRef);
+    setInputText("");
   };
 
   return (
@@ -75,7 +75,7 @@ const Chat = () => {
       <div className="chatInput">
         <AddCircleOutlineIcon />
         <form>
-          <input type="text" placeholder="#Udemyへメッセージを送信" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)} />
+          <input type="text" placeholder="#Udemyへメッセージを送信" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)} value={inputText} />
           <button type="submit" className="chatInputButton" onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => sendMessage(e)}>
             送信
           </button>
